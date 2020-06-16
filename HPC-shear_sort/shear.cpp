@@ -4,6 +4,7 @@
  * BCD-9218: Parallel and Distributed Computing
  * Instructor Diego Jimenez, Eng. (diego.jimenez@ulead.ac.cr)
  *  OpenMP parallel shear sort.
+ *  Student: Jorge L. Ortega Badilla (jorge.ortega@ulead.ac.cr)
  */
 
 #include <cstdio>
