@@ -68,20 +68,20 @@ int main(int argc, char *argv[]) {
     tmp = 0;
     // stencil loop
     for (int i = 0; i < M; ++i) {
-        // TO DO: send ghost cells to neighbors
-        // TO DO: receive ghost cells from neighbors
-
         if (rank == 0) {
             printf("Starting iteration %d\n", i);
             MPI_Send(&data, 1, MPI_DOUBLE, rank + 1, 0, MPI_COMM_WORLD);
             MPI_Recv(&tmp, 1, MPI_DOUBLE, rank - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
         } else if (rank != 0 && rank != (size - 1)){
             MPI_Send(&data, 1, MPI_DOUBLE, rank + 1, 0, MPI_COMM_WORLD);
             MPI_Recv(&tmp, 1, MPI_DOUBLE, rank - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
         } else if (rank == (size - 1)){
             MPI_Send(&data, 1, MPI_DOUBLE, rank - 2, 0, MPI_COMM_WORLD);
             MPI_Recv(&tmp, 1, MPI_DOUBLE, rank - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         }
+//        printf("size is: %d \n", size);
 
         // modify internal elements
         for (int i = 1; i < rows + 1; ++i) {
