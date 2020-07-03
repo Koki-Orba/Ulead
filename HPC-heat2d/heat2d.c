@@ -3,6 +3,7 @@
  * Advanced Computing Laboratory
  * Instructor:  Diego Jimenez Vargas, Eng.
  * MPI 2D stencil computation.
+ * Student: Jorge Ortega Badilla.
  */
 
 #include <mpi.h>
@@ -78,8 +79,8 @@ int main(int argc, char *argv[]) {
             MPI_Send(&data, 1, MPI_DOUBLE, rank + 1, 0, MPI_COMM_WORLD);
             MPI_Recv(&tmp, 1, MPI_DOUBLE, rank - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         } else if (rank == (size - 1)){
-            MPI_Send(&data, 1, MPI_DOUBLE, rank - 1, 0, MPI_COMM_WORLD);
-            MPI_Recv(&tmp, 1, MPI_DOUBLE, rank - 2, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            MPI_Send(&data, 1, MPI_DOUBLE, rank - 2, 0, MPI_COMM_WORLD);
+            MPI_Recv(&tmp, 1, MPI_DOUBLE, rank - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
         }
 
         // modify internal elements
